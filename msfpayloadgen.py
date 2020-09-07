@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 import base64
 import re
@@ -11,9 +11,6 @@ import string
 import binascii
 import time
 
-if os.getuid() != 0:
-	print ("Sorry. This script requires sudo privledges")
-	sys.exit()
 def MainMenu():
 	time.sleep(0)
 
@@ -29,7 +26,7 @@ print('''\033[1;31m
 \033[1;m\033[1;31m Creator: Jeevan Chandra''')
 
 print('''\033[1;32m
-Script granted ROOT# Privileges!\033[1;m''')
+Script granted NON-ROOT# Privileges!\033[1;m''')
 
 #----------------------------------------------------------------
 #
